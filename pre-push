@@ -6,6 +6,18 @@ showedProject[1]=0
 projectArray[0]="testBundle"
 projectArray[1]="developBundle"
 
+function fetchProject()
+{
+	for file in `ls | grep "^O2O"`
+	do
+		if [ -d $file ] 
+		then
+			echo "$file"
+		fi
+	done
+	
+}
+
 function showAlertMessage()
 {	
 	project="$1"
@@ -21,6 +33,10 @@ function showAlertMessage()
 
 function main()
 {
+	#获取项目名称
+	fetchProject
+
+	#获取commit id
 	git log $branch ^origin/$branch | grep 'commit' | sed 's/^commit//g' > git_log_data.txt
 
 	if [ -s "git_log_data.txt" ] 
@@ -35,6 +51,7 @@ function main()
 					index=0
 					for projectName in ${projectArray[*]}
 					do
+						#判断是否已经展示
 						showAlertMessage $projectName $index
 						let index++
 					done	
