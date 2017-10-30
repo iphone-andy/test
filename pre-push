@@ -11,6 +11,7 @@ function fetchProject()
 	do
 		if [ -d $file  &&  "$file" != "O2O" ] 
 		then
+			echo "$file"
 			showedProject[$index]=0
 			projectArray[$index]="$file"
 			let index++
