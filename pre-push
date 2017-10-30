@@ -9,7 +9,7 @@ function fetchProject()
 	index=0
 	for file in `ls | grep "^O2O"`
 	do
-		if [ -d $file  &&  "$file" != "O2O" ] 
+		if [[ -d $file  &&  "$file" != "O2O" ]] 
 		then
 			echo "$file"
 			showedProject[$index]=0
