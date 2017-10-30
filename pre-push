@@ -9,7 +9,7 @@ function fetchProject()
 	index=0
 	for file in `ls | grep "^O2O"`
 	do
-		if [ -d $file ] 
+		if [ -d $file  &&  "$file" != "O2O" ] 
 		then
 			showedProject[$index]=0
 			projectArray[$index]="$file"
@@ -27,7 +27,7 @@ function showAlertMessage()
 		if [ ${showedProject[$2]} -eq 0 ] 
 		then
 			showedProject[$2]=1
-			echo "⚠️  ⚠️  ⚠️  You should deploy $project after push, don't forget it!"
+			echo "⚠️  ⚠️  ⚠️  You should deploy $project after push, don't forget it! ⚠️  ⚠️  ⚠️"
 		fi
 	fi
 }
