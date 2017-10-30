@@ -2,17 +2,18 @@
 
 branch=`git symbolic-ref --short -q HEAD`
 showedProject[0]=0
-showedProject[1]=0
 projectArray[0]="testBundle"
-projectArray[1]="developBundle"
 
 function fetchProject()
 {
+	index=0
 	for file in `ls | grep "^O2O"`
 	do
 		if [ -d $file ] 
 		then
-			echo "$file"
+			showedProject[$index]=0
+			projectArray[$index]="$file"
+			let index++
 		fi
 	done
 	
